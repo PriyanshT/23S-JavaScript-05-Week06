@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="utf-8" />
 	<title>Event Listeners/Handlers | COMP1073 Client-Side JavaScript</title>
@@ -10,7 +11,8 @@
 
 <body>
 	<h1>More About Events</h1>
-	<p>There are some other aspects of events that we should consider. In order to understand these concepts, we will need to delve a bit deeper into JavaScript events.</p>
+	<p>There are some other aspects of events that we should consider. In order to understand these concepts, we will
+		need to delve a bit deeper into JavaScript events.</p>
 
 	<button>Change Color</button>
 
@@ -24,20 +26,26 @@
 	<p id="formErrors"></p>
 	<script>
 		// Declare and initialize variables
-		var elem = document.querySelector('p');
+		var elem = document.querySelector('h1');
 
 		// Functions
 		function random(number) {
-			return Math.floor(Math.random()*(number+1));
+			return Math.floor(Math.random() * (number + 1));
 		}
 		/* STEP 1a: Event Objects
-		Modify the below function to allow it to accept the event as a parameter or argument (named "event" in this case), then change the background color of the event.target instead of the document body */
-		function bgChange() {
-			var rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';			document.body.style.backgroundColor = rndCol;
+		Modify the below function to allow it to accept the event as a parameter 
+		or argument (named "event" in this case), then change the background color of the 
+		event.target instead of the document body */
+		function bgChange(event) {
+			var rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+			event.target.style.backgroundColor = rndCol;
+			//console.log(event.target);
 		}
-		// The target property of the event is a reference to the element that the event was acted upon
+		// The target property of the event is a reference to the element 
+		//that the event was acted upon
 
-		/* STEP 1b: Change the element that features the click event listener by modifying the var declaration above to target the <h1> instead */
+		/* STEP 1b: Change the element that features the click event listener 
+		by modifying the var declaration above to target the <h1> instead */
 
 		// Event Listeners/Handlers
 		elem.addEventListener('click', bgChange);
@@ -51,10 +59,17 @@
 		var para = document.querySelector('#formErrors');
 
 		/* STEP 2b: Create a script to capture the onsubmit event using preventDefault() */
-
+		form.addEventListener("submit", function (event) {
+			console.log("Inside event listener");
+			if (email.value === "") {
+				event.preventDefault();
+				para.textContent = "Please enter an email.";
+			}
+		})
 		// Next, open up gallery.html...
 
 		// This page inspired by and adapted from https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events
-		</script>
-	</body>
+	</script>
+</body>
+
 </html>
